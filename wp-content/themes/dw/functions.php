@@ -19,3 +19,19 @@ add_action( 'wp_enqueue_scripts', function() {
     // Remove inline global CSS on the front end.
     wp_dequeue_style( 'global-styles' );
 }, 20 );
+
+
+
+// Enregistrer de nouveau type de contenu qui seront stockés dans la table "wp_posts",
+// avec un identifint spécifique dans la colonne "post_type"
+
+register_post_type('recipe', [
+    'label' => 'Recettes',
+    'description' => 'Les recettes liées à nos voyages',
+    'menu_position' => 6,
+    'menu_icon' => 'dashicons-carrot',
+    'public' => true,
+    'rewrite' => [
+        'slug' => 'recettes'
+    ],
+]);
