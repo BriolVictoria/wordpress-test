@@ -21,6 +21,9 @@ add_action( 'wp_enqueue_scripts', function() {
 }, 20 );
 
 
+// Activer l'utilisation des vignettes (images de couverture) sur nos post_type
+add_theme_support( 'post-thumbnails', ['recipe']);
+
 
 // Enregistrer de nouveau type de contenu qui seront stockés dans la table "wp_posts",
 // avec un identifint spécifique dans la colonne "post_type"
@@ -34,4 +37,5 @@ register_post_type('recipe', [
     'rewrite' => [
         'slug' => 'recettes'
     ],
+    'supports' => ['title', 'excerpt', 'editor', 'thumbnail'],
 ]);
