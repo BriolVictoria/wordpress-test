@@ -3,7 +3,7 @@
 <?php get_header(); ?>
 
     <aside>
-        <h2>À propose de moi</h2>
+        <h2>À propos de moi</h2>
     </aside>
 <?php
 // On ouvre "la boucle" (The loop), la structure de contrôle de contenu propre à WordPress:
