@@ -1,5 +1,8 @@
 <?php
 
+// Charger les champs ACF exporter
+include_once('fields.php');
+
 // Gutenberg est le nouvelle éditeur de contenu propre à wordPress
 // il ne nous intérresse pas pour l'utilisation du thème que
 // nous allons créer. On va le désactiver :
