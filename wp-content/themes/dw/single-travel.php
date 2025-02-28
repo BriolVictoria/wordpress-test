@@ -1,10 +1,18 @@
 <?php get_header(); ?>
 
     <style type="text/css">
+        .sro {
+            position: absolute;
+            overflow: hidden;
+            clip: rect(0 0 0 0);
+            height: 1px;
+            width: 1px;
+            margin: -1px;
+            padding: 0;
+            border: 0;
+        }
         .travel {
-            display: flex;
-            flex-direction: row-reverse;
-            justify-content: space-between;
+
         }
 
         .travel_header {
@@ -38,12 +46,12 @@
             opacity: 0.75;
         }
 
-     .travel_cover {
-         display: block;
-         width: 100%;
-         height:100%;
-         object-fit: cover;
-     }
+        .travel_cover {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
         .travel_head {
             z-index: 1;
@@ -86,6 +94,46 @@
             height: 100%;
             object-fit: cover;
         }
+
+        .travel_rating {
+            width:150px;
+            height: 30px;
+            display: block;
+            position: relative;
+            background: url("/wp-content/themes/dw/ressources/img/start_empty.svg");
+            background-repeat: repeat-x;
+            background-position: 0 0;
+        }
+
+        .travel_rating:after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            background: url("/wp-content/themes/dw/ressources/img/star_fill.svg");
+            background-repeat: repeat-x;
+            background-position: 0 0;
+        }
+
+        .travel_rating[data-score="1"]:after {
+            width: 30px;
+        }
+        .travel_rating[data-score="2"]:after {
+            width: 60px;
+        }
+        .travel_rating[data-score="3"]:after {
+            width: 90px;
+        }
+        .travel_rating[data-score="4"]:after {
+            width: 120px;
+        }
+        .travel_rating[data-score="5"]:after {
+            width: 100%;
+        }
+
     </style>
 
 <?php
@@ -99,6 +147,10 @@ if (have_posts()): while (have_posts()): the_post(); ?>
                 <h2 class="travel_title"><?= get_the_title(); ?></h2>
 
                 <p class="travel_excerpt"><?= get_the_excerpt(); ?></p>
+                <div class="travel_rating" data-score="4">
+                    <p class="sro">Ce voyage obtient l'appréciation de 4 étoiles sur 5</p>
+
+                </div>
             </div>
             <figure class="travel_back">
                 <?= get_the_post_thumbnail(size: 'travel-header', attr: ['class' => 'travel_cover']); ?>
@@ -109,23 +161,23 @@ if (have_posts()): while (have_posts()): the_post(); ?>
         <div class="travel_container">
 
 
-        <aside class="travel_ingredients">
+            <aside class="travel_ingredients">
 
-            <div>
-                <h3>Informations</h3>
-                <p>À compléter</p>
-            </div>
-            <figure class="travel_fig">
-                <?= get_the_post_thumbnail(size: 'travel-size', attr: ['class' => 'travel_img']); ?>
-            </figure>
+                <div>
+                    <h3>Informations</h3>
+                    <p>À compléter</p>
+                </div>
+                <figure class="travel_fig">
+                    <?= get_the_post_thumbnail(size: 'travel-size', attr: ['class' => 'travel_img']); ?>
+                </figure>
 
-        </aside>
-        <section class="travel_step">
+            </aside>
+            <section class="travel_step">
 
-            <h3>Prix</h3>
-            <div><?= get_the_content(); ?></div>
+                <h3>Prix</h3>
+                <div><?= get_the_content(); ?></div>
 
-        </section>
+            </section>
         </div>
 
     </div>
