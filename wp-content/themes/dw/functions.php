@@ -51,3 +51,12 @@ register_post_type('travel', [
     ],
     'supports' => ['title', 'excerpt', 'editor', 'thumbnail'],
 ]);
+
+// Paramétrer des tailles d'images pour le générateur de thumbnails de WordPress
+
+
+// sans recadrage :
+add_image_size('travel-size', 420, 420);
+
+// avec recadrage
+add_image_size('travel-header', 1920, 400, ['left', 'top']); //
