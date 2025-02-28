@@ -147,9 +147,19 @@ if (have_posts()): while (have_posts()): the_post(); ?>
                 <h2 class="travel_title"><?= get_the_title(); ?></h2>
 
                 <p class="travel_excerpt"><?= get_the_excerpt(); ?></p>
-                <div class="travel_rating" data-score="<?= get_field('rating')?>">
-                    <p class="sro">Ce voyage obtient l'appréciation de <?= get_field('rating')?> étoiles sur 5</p>
+                <div class="travel_rating" data-score="<?= $rating= get_field('rating')?>">
+                    <p class="sro">Ce voyage obtient l'appréciation de <?= $rating?> étoiles sur 5</p>
 
+                </div>
+                <div class="travel_dates">
+                    <?php
+                    $departure = get_field('departure');
+                    $return  = get_field('return');
+                    if ($return) : ?>
+                        <p>Du <time datetime="<?= date('c', get_field('departure')); ?>"><?= date_i18n('d F Y', get_field('departure')); ?></time> au <time datetime="<?= date('c', get_field('return')); ?>"><?= date_i18n('d F Y', get_field('return')); ?></time></p>
+                    <?php else: ?>
+                        <p>Depuis le <time datetime="<?= date('c', get_field('departure')); ?>"><?= date_i18n('d F Y', get_field('departure')); ?></time>.</p>
+                    <?php endif; ?>
                 </div>
             </div>
             <figure class="travel_back">
@@ -164,18 +174,21 @@ if (have_posts()): while (have_posts()): the_post(); ?>
             <aside class="travel_ingredients">
 
                 <div>
-                    <h3>Informations</h3>
-                    <p>À compléter</p>
+                    <h3>Points-clés</h3>
+                    <div class="wyswig">
+                        <?= get_field('keypoints') ?>
+                    </div>
                 </div>
                 <figure class="travel_fig">
-                    <?= get_the_post_thumbnail(size: 'travel-size', attr: ['class' => 'travel_img']); ?>
+                    <?= wp_get_attachment_image(get_field('side_image'), 'travel_side') ?>
                 </figure>
 
             </aside>
+
             <section class="travel_step">
 
-                <h3>Prix</h3>
-                <div><?= get_the_content(); ?></div>
+                <h3>Récit de voyage</h3>
+                <div><?= get_field('story') ?></div>
 
             </section>
         </div>
