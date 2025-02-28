@@ -79,27 +79,6 @@ add_action( 'acf/include_fields', function() {
                 'allow_in_bindings' => 0,
             ),
             array(
-                'key' => 'field_67c18e694905e',
-                'label' => 'Points clé',
-                'name' => 'keypoints',
-                'aria-label' => '',
-                'type' => 'wysiwyg',
-                'instructions' => '',
-                'required' => 1,
-                'conditional_logic' => 0,
-                'wrapper' => array(
-                    'width' => '',
-                    'class' => '',
-                    'id' => '',
-                ),
-                'default_value' => '',
-                'allow_in_bindings' => 0,
-                'tabs' => 'visual',
-                'toolbar' => 'basic',
-                'media_upload' => 0,
-                'delay' => 0,
-            ),
-            array(
                 'key' => 'field_67c18f74659d9',
                 'label' => 'Récits de voyage',
                 'name' => 'stories',
@@ -115,8 +94,8 @@ add_action( 'acf/include_fields', function() {
                 ),
                 'default_value' => '',
                 'allow_in_bindings' => 0,
-                'tabs' => 'all',
-                'toolbar' => 'full',
+                'tabs' => 'visual',
+                'toolbar' => 'basic',
                 'media_upload' => 1,
                 'delay' => 0,
             ),
@@ -159,7 +138,7 @@ add_action( 'acf/include_fields', function() {
                     'class' => '',
                     'id' => '',
                 ),
-                'return_format' => 'array',
+                'return_format' => 'id',
                 'library' => 'all',
                 'min_width' => 420,
                 'min_height' => 420,
@@ -170,6 +149,27 @@ add_action( 'acf/include_fields', function() {
                 'mime_types' => '',
                 'allow_in_bindings' => 0,
                 'preview_size' => 'medium',
+            ),
+            array(
+                'key' => 'field_67c18e694905e',
+                'label' => 'Points clé',
+                'name' => 'keypoints',
+                'aria-label' => '',
+                'type' => 'wysiwyg',
+                'instructions' => '',
+                'required' => 1,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'default_value' => '',
+                'allow_in_bindings' => 0,
+                'tabs' => 'visual',
+                'toolbar' => 'basic',
+                'media_upload' => 0,
+                'delay' => 0,
             ),
         ),
         'location' => array(
@@ -192,4 +192,8 @@ add_action( 'acf/include_fields', function() {
         'show_in_rest' => 0,
     ) );
 } );
+
+
+
+
 
