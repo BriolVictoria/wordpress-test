@@ -22,7 +22,7 @@ add_action( 'wp_enqueue_scripts', function() {
 
 
 // Activer l'utilisation des vignettes (images de couverture) sur nos post_type
-add_theme_support( 'post-thumbnails', ['recipe']);
+add_theme_support( 'post-thumbnails', ['recipe', 'travel']);
 
 
 // Enregistrer de nouveau type de contenu qui seront stockés dans la table "wp_posts",
@@ -36,6 +36,18 @@ register_post_type('recipe', [
     'public' => true,
     'rewrite' => [
         'slug' => 'recettes'
+    ],
+    'supports' => ['title', 'excerpt', 'editor', 'thumbnail'],
+]);
+
+register_post_type('travel', [
+    'label' => 'Voyages',
+    'description' => 'Les voyages que nous avons réalisés',
+    'menu_position' => 5,
+    'menu_icon' => 'dashicons-airplane',
+    'public' => true,
+    'rewrite' => [
+        'slug' => 'voyages'
     ],
     'supports' => ['title', 'excerpt', 'editor', 'thumbnail'],
 ]);
