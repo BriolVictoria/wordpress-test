@@ -11,14 +11,13 @@
             padding: 0;
             border: 0;
         }
-        .travel {
 
-        }
 
         .travel_header {
             height: 400px;
             width: 100%;
             position: relative;
+            overflow: hidden;
         }
 
         .travel_back,
@@ -85,7 +84,7 @@
             margin: 0;
         }
 
-        .travel_img {
+        img {
             display: block;
             position: absolute;
             top: 0;
