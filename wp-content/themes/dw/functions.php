@@ -61,6 +61,7 @@ add_image_size('travel-side', 420, 420);
 // Avec recadrage :
 add_image_size('travel-header', 1920, 400, true);
 
+
 register_nav_menu( 'header', 'Le menu de navigation principale du haut de la page' );
 register_nav_menu( 'footer', 'Le menu de navigation principale du bas de la page' );
 
