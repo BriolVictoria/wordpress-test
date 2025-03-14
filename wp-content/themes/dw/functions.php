@@ -34,6 +34,7 @@ register_post_type('recipe', [
     'menu_position' => 6,
     'menu_icon' => 'dashicons-carrot',
     'public' => true,
+    'has_archive' => true,
     'rewrite' => [
         'slug' => 'recettes'
     ],
@@ -46,6 +47,7 @@ register_post_type('travel', [
     'menu_position' => 5,
     'menu_icon' => 'dashicons-airplane',
     'public' => true,
+    'has_archive' => true,
     'rewrite' => [
         'slug' => 'voyages'
     ],
