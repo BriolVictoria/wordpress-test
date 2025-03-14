@@ -101,16 +101,18 @@ get_header(); ?>
             width: 320px;
             padding: 20px;
             margin-right: 3em;
-            background: #f4c152;
+            background: #d6d3ce;
             display: flex;
             flex-direction: column-reverse;
         }
+
         .recipe__header {
             height: 400px;
             width: 100%;
             position: relative;
             margin-bottom: 3em;
         }
+
         .recipe__back,
         .recipe__back:before,
         .recipe__head {
@@ -122,21 +124,25 @@ get_header(); ?>
             width: 100%;
             height: 100%;
         }
+
         .recipe__back {
             z-index: 0;
             margin: 0;
             padding: 0;
         }
+
         .recipe__back:before {
             content: '';
             display: block;
             background: rgba(244, 82, 139, 0.6);
             opacity: 0.75;
         }
-        .recipe__travel{
+
+        .recipe__travel {
             color: white;
             font-size: 18px;
         }
+
         .recipe__cover {
             display: block;
             width: 100%;
@@ -159,6 +165,31 @@ get_header(); ?>
     </header>
     <div class="recipe__container">
         <aside class="recipe__ingredients">
+            <section>
+                <h4>Quand manger?</h4>
+                <?php if ($courses = get_the_terms(get_the_ID(), 'course')):?>
+                <ul>
+                    <?php foreach ($courses as $term): ?>
+                    <li><?= $term->name; ?></li>
+                        <?php endforeach; ?>
+                </ul>
+                <?php else: ?>
+                    <p>Quand vous-voulez</p>
+                <?php endif; ?>
+            </section>
+
+            <section>
+                <h4>Pour quel régime ?</h4>
+                <?php if ($diets = get_the_terms(get_the_ID(), 'diet')): ?>
+                    <ul>
+                        <?php foreach ($diets as $term): ?>
+                        <li><?= $term->name; ?></li>
+                            <?php endforeach; ?>
+                    </ul>
+                <?php else: ?>
+                    <p>Aucun régime particulier</p>
+                <?php endif; ?>
+            </section>
             <div>
                 <h3>Ingrédients</h3>
                 <p><?= get_field('ingredients') ?></p>
@@ -166,6 +197,7 @@ get_header(); ?>
             <figure class="recipe_fig">
                 <?= get_the_post_thumbnail(size: 'large', attr: ['class' => 'recipe_img']) ?>
             </figure>
+
         </aside>
 
         <section class="recipe_steps">

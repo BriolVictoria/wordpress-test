@@ -54,6 +54,30 @@ register_post_type('travel', [
     'supports' => ['title', 'excerpt', 'editor', 'thumbnail'],
 ]);
 
+// Ajouter des "catégories" (taxonomies) sur ces post_types:
+
+register_taxonomy('course', ['recipe'], [
+    'labels' => [
+        'name' => 'Services',
+        'singular_name' => 'Service',
+    ],
+    'description' => 'A quel moment du repas ce plat intervient-il ?',
+    'public' => true,
+    'hierarchical' => true,
+    'show_tagcloud' => false,
+]);
+
+register_taxonomy('diet', ['recipe'], [
+    'labels' => [
+        'name' => 'Régimes alimentaires',
+        'singular_name' => 'Régime',
+    ],
+    'description' => 'A quel type de régime appartient cette recette ?',
+    'public' => true,
+    'hierarchical' => true,
+    'show_tagcloud' => false,
+]);
+
 // Paramétrer des tailles d'images pour le générateur de thumbnails de Wordpress :
 
 // Sans recadrage :
