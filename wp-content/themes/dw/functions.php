@@ -89,7 +89,7 @@ function dw_get_navigation_links(string $location): array
         $link = new stdClass();
         $link->href = $post->url;
         $link->label = $post->title;
-        
+
 
         /*$links[] = $link; même chose mais en plus court*/
         array_push($links, $link);
