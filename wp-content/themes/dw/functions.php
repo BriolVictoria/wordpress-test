@@ -63,3 +63,41 @@ add_image_size('travel-header', 1920, 400, true);
 
 register_nav_menu( 'header', 'Le menu de navigation principale du haut de la page' );
 register_nav_menu( 'footer', 'Le menu de navigation principale du bas de la page' );
+
+
+
+//Créer une nouvelle fonction qui permet de retourner un menu de navigation formaté en un tableau d'objets afin de pouvoir l'afficher à notre guise dans le template
+
+function dw_get_navigation_links(string $location): array
+{
+    //Récupérer l'objet WP pour le menu à la location $location
+    $locations = get_nav_menu_locations();
+
+    if (! isset($locations[$location])) {
+        return [];
+    }
+
+    $nav_id = $locations[$location];
+    $nav = wp_get_nav_menu_items($nav_id);
+
+
+    // Transformer le menu en un tableau de liens, chaque lien étant un objet personnalisé
+
+    $links = [];
+
+    foreach ($nav as $post) {
+        $link = new stdClass();
+        $link->href = $post->url;
+        $link->label = $post->title;
+        
+
+        /*$links[] = $link; même chose mais en plus court*/
+        array_push($links, $link);
+    }
+
+
+    //Retourner ce tableau d'objets (liens).
+
+    return $links;
+
+}
