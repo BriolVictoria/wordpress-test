@@ -164,7 +164,7 @@ if(have_posts()): while(have_posts()): the_post(); ?>
             <section class="travel__steps">
                 <h3>Récit de voyage</h3>
                 <div class="wysiwyg">
-                    <?= get_field('story'); ?>
+                    <?= get_field('stories'); ?>
                 </div>
             </section>
         </div>
