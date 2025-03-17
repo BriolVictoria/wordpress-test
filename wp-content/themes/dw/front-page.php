@@ -92,7 +92,7 @@ endwhile; else: ?>
     <p>La page est vide.</p>
 <?php endif; ?>
     <section>
-        <h2>Mes voyages récents</h2>
+        <h2><?= __hepl('Mes voyages récents') ?></h2>
         <div class="trips">
             <?php
             $travels = new WP_Query([

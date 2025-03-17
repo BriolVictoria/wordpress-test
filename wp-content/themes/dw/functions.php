@@ -152,3 +152,32 @@ function dw_get_navigation_links(string $location): array
     return $links;
 
 }
+
+// Créer une fonction qui permet de créer des pages d'options ACF pour le thème :
+function create_site_options_page() {
+    if (function_exists('acf_add_options_page')) {
+        // Page principale
+        acf_add_options_page([
+            'page_title'  => 'Site Options',
+            'menu_title'  => 'Site Settings',
+            'menu_slug'   => 'site-options',
+            'capability'  => 'edit_posts',
+            'redirect'    => false
+        ]);
+
+        // Sous-pages
+        acf_add_options_sub_page([
+            'page_title'  => 'Company Settings',
+            'menu_title'  => 'Company',
+            'parent_slug' => 'site-options',
+        ]);
+
+        acf_add_options_sub_page([
+            'page_title'  => 'SEO Settings',
+            'menu_title'  => 'SEO',
+            'parent_slug' => 'site-options',
+        ]);
+    }
+}
+
+add_action('acf/init', 'create_site_options_page');

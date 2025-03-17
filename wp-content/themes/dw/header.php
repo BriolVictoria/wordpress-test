@@ -8,6 +8,11 @@
 
 <header>
     <h1><?= get_bloginfo('name') ?></h1>
+
+    <p>
+        <?= get_field('options_company_name', 'option'); ?>
+    </p>
+
     <p> <?= get_bloginfo('description') ?></p>
 
     <nav class="nav">

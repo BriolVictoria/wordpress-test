@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2025-03-17 14:46+0100\n"
-"PO-Revision-Date: 2025-03-17 14:53+0100\n"
+"POT-Creation-Date: 2025-03-17 15:16+0100\n"
+"PO-Revision-Date: 2025-03-17 15:16+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_GB\n"
@@ -13,6 +13,10 @@ msgstr ""
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __hepl\n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: front-page.php:95
+msgid "Mes voyages récents"
+msgstr "My recent trip"
 
 #: header.php:14
 msgid "Navigation principale"
