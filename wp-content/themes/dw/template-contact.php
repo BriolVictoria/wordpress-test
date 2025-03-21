@@ -9,7 +9,12 @@
 // On ouvre "la boucle" (The loop), la structure de contrôle de contenu propre à WordPress:
 if(have_posts()): while (have_posts()): the_post(); ?>
 
-    <div><?= get_the_content(); ?></div>
+    <section class="contact">
+        <div class="contact_left"><?= get_the_content(); ?></div>
+        <div class="contact_right">
+            <?= do_shortcode('[contact-form-7 id="717578e" title="Formulaire page contact"]') ?>
+        </div>
+    </section>
 
 <?php
     // On ferme "la boucle" (The loop)
