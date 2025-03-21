@@ -34,24 +34,24 @@ function __hepl(string $translation, array $replacements = [])
 // nous allons créer. On va le désactiver :
 
 // Disable Gutenberg on the back end.
-add_filter( 'use_block_editor_for_post', '__return_false' ); // une chaîne de caractère qui existe dans wordPress
+add_filter('use_block_editor_for_post', '__return_false'); // une chaîne de caractère qui existe dans wordPress
 
 // Disable Gutenberg for widgets.
-add_filter( 'use_widgets_block_editor', '__return_false' );
+add_filter('use_widgets_block_editor', '__return_false');
 // Disable default front-end styles.
 
-add_action( 'wp_enqueue_scripts', function() {
+add_action('wp_enqueue_scripts', function () {
     // Remove CSS on the front end.
-    wp_dequeue_style( 'wp-block-library' );
+    wp_dequeue_style('wp-block-library');
     // Remove Gutenberg theme.
-    wp_dequeue_style( 'wp-block-library-theme' );
+    wp_dequeue_style('wp-block-library-theme');
     // Remove inline global CSS on the front end.
-    wp_dequeue_style( 'global-styles' );
-}, 20 );
+    wp_dequeue_style('global-styles');
+}, 20);
 
 
 // Activer l'utilisation des vignettes (images de couverture) sur nos post_type
-add_theme_support( 'post-thumbnails', ['recipe', 'travel']);
+add_theme_support('post-thumbnails', ['recipe', 'travel']);
 
 
 // Enregistrer de nouveau type de contenu qui seront stockés dans la table "wp_posts",
@@ -115,8 +115,8 @@ add_image_size('travel-side', 420, 420);
 add_image_size('travel-header', 1920, 400, true);
 
 
-register_nav_menu( 'header', 'Le menu de navigation principale du haut de la page' );
-register_nav_menu( 'footer', 'Le menu de navigation principale du bas de la page' );
+register_nav_menu('header', 'Le menu de navigation principale du haut de la page');
+register_nav_menu('footer', 'Le menu de navigation principale du bas de la page');
 
 
 
@@ -127,7 +127,7 @@ function dw_get_navigation_links(string $location): array
     //Récupérer l'objet WP pour le menu à la location $location
     $locations = get_nav_menu_locations();
 
-    if (! isset($locations[$location])) {
+    if (!isset($locations[$location])) {
         return [];
     }
 
@@ -146,7 +146,6 @@ function dw_get_navigation_links(string $location): array
         $link->icone = get_field('icon', $post);
 
 
-
         /*$links[] = $link; même chose mais en plus court*/
         array_push($links, $link);
     }
@@ -158,28 +157,40 @@ function dw_get_navigation_links(string $location): array
 
 }
 
+register_post_type('contact_message', [
+    'label' => 'Messages de contact',
+    'description' => 'Les envois de formulaire via la page de contact',
+    'menu_position' => 10,
+    'menu_icon' => 'dashicons-email',
+    'public' => false,
+    'show_ui' => true,
+    'has_archive' => false,
+    'supports' => ['title','editor'],
+]);
+
 // Créer une fonction qui permet de créer des pages d'options ACF pour le thème :
-function create_site_options_page() {
+function create_site_options_page()
+{
     if (function_exists('acf_add_options_page')) {
         // Page principale
         acf_add_options_page([
-            'page_title'  => 'Site Options',
-            'menu_title'  => 'Site Settings',
-            'menu_slug'   => 'site-options',
-            'capability'  => 'edit_posts',
-            'redirect'    => false
+            'page_title' => 'Site Options',
+            'menu_title' => 'Site Settings',
+            'menu_slug' => 'site-options',
+            'capability' => 'edit_posts',
+            'redirect' => false
         ]);
 
         // Sous-pages
         acf_add_options_sub_page([
-            'page_title'  => 'Company Settings',
-            'menu_title'  => 'Company',
+            'page_title' => 'Company Settings',
+            'menu_title' => 'Company',
             'parent_slug' => 'site-options',
         ]);
 
         acf_add_options_sub_page([
-            'page_title'  => 'SEO Settings',
-            'menu_title'  => 'SEO',
+            'page_title' => 'SEO Settings',
+            'menu_title' => 'SEO',
             'parent_slug' => 'site-options',
         ]);
     }

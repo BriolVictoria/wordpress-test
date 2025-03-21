@@ -44,8 +44,13 @@ class ContactForm
         $data = $this->cleanData($data);
 
         // Sauvegarder le formulaire envoyé en base de données.
-        // TODO.
 
+        wp_insert_post([
+            'post_type' => 'contact_message',
+            'post_title' => $data['firstname'].' '.$data['lastname'],
+            'post_content' => $this->generateEmailContent($data),
+            'post_status' => 'publish',
+        ]);
         // Envoyer un mail de notification.
         wp_mail(
             to: 'toon@whitecube.be',
@@ -126,7 +131,6 @@ class ContactForm
             .'Vous avez un nouveau message de '.$data['firstname'].' '.$data['lastname'].':'.PHP_EOL
             .$data['message'].PHP_EOL.PHP_EOL
             .'----'.PHP_EOL
-            .'Adresse mail: '.$data['firstname'];
+            .'Adresse mail: '.$data['email'];
     }
-
 }
