@@ -181,3 +181,14 @@ function create_site_options_page() {
 }
 
 add_action('acf/init', 'create_site_options_page');
+
+// Ajouter un post pour un formulaire de contact personnalisé
+
+add_action('admin_post_nopriv_dw_submit_contact_form', 'dw_handle_contact_form');
+add_action('admin_post_dw_submit_contact_form', 'dw_handle_contact_form');
+
+
+function dw_handle_contact_form()
+{
+    var_dump($_POST); die();
+}
