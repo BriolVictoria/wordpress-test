@@ -51,7 +51,7 @@ $manifestPath = get_theme_file_path('public/.vite/manifest.json');
 
 if (file_exists($manifestPath)) {
     $manifest = json_decode(file_get_contents($manifestPath), true);
-    if (isset($manifest['wp-content/themes/dw/ressources/css/styles.css'])) {
+    if (isset($manifest['wp-content/themes/dw/ressources/css/styles.scss'])) {
         wp_enqueue_style('dw', get_theme_file_uri('public/' . $manifest['wp-content/themes/dw/ressources/css/styles.scss']['file']));
     }
 

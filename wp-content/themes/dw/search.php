@@ -3,7 +3,7 @@
 
 <div>
     <h1>
-        résultat de la recher : <?= get_search_query(); ?>
+        résultat de la recherche : <?= get_search_query(); ?>
     </h1>
 
     <?php if (have_posts()): ?>
@@ -18,7 +18,7 @@
     </ul>
 
     <?php else: ?>
-
+<p>Désolé il n'y a rien</p>
     <?php endif; ?>
 </div>
 
