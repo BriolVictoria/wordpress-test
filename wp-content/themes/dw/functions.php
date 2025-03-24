@@ -169,32 +169,53 @@ register_post_type('contact_message', [
 ]);
 
 // Créer une fonction qui permet de créer des pages d'options ACF pour le thème :
-function create_site_options_page()
+function create_site_options_page():void
+
 {
-    if (function_exists('acf_add_options_page')) {
-        // Page principale
+
+    if(function_exists('acf_add_options_page')){
+
+//Pageprincipale
+
         acf_add_options_page([
-            'page_title' => 'Site Options',
-            'menu_title' => 'Site Settings',
-            'menu_slug' => 'site-options',
-            'capability' => 'edit_posts',
-            'redirect' => false
+
+            'page_title'=>'SiteOptions',
+
+            'menu_title'=>'SiteSettings',
+
+            'menu_slug'=>'site-options',
+
+            'capability'=>'edit_posts',
+
+            'redirect'=>false
+
         ]);
 
-        // Sous-pages
-        acf_add_options_sub_page([
-            'page_title' => 'Company Settings',
-            'menu_title' => 'Company',
-            'parent_slug' => 'site-options',
-        ]);
 
-        acf_add_options_sub_page([
-            'page_title' => 'SEO Settings',
-            'menu_title' => 'SEO',
-            'parent_slug' => 'site-options',
-        ]);
+
+        foreach(['fr','en']as$lang){
+
+            acf_add_options_sub_page([
+
+                'page_title'=>sprintf(__('Optionsdusite%s','hepl-trad'),strtoupper($lang)),
+
+                'menu_title'=>sprintf(__('Optionsdusite%s','hepl-trad'),strtoupper($lang)),
+
+                'menu_slug'=>'site-options-'.$lang,
+
+                'post_id'=>$lang,
+
+                'parent'=>'site-options',
+
+            ]);
+
+        }
+
     }
+
 }
+
+
 
 add_action('acf/init', 'create_site_options_page');
 

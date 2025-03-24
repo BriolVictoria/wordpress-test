@@ -1,0 +1,15 @@
+.h1 {
+  color: green;
+}
+
+.header {
+  &__headline{
+    font-weight: 400;
+    &__strong {
+      font-weight: 700;
+    }
+  }
+}
+
+/*
+.header__headline // en css normal*/
