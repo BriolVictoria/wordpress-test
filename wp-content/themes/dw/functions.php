@@ -29,6 +29,46 @@ function __hepl(string $translation, array $replacements = [])
     return $base;
 }
 
+/**
+ * Récupère la valeur d'un champ ACF d'une page d'option pour la langue courante.
+ *
+ * Cette fonction utilise Advanced Custom Fields PRO (ACF) et Polylang
+ * pour récupérer la valeur d'un champ d'option spécifique en fonction
+ * de la langue active sur le site.
+ *
+ * @param string $field Le nom du champ ACF à récupérer.
+ * @return mixed La valeur du champ, ou `false` si le champ n'existe pas.
+ *
+ *
+ */
+function get__option($field): mixed
+{
+    return get_field($field, pll_current_language('slug'));
+}
+
+
+$manifestPath = get_theme_file_path('public/.vite/manifest.json');
+
+if (file_exists($manifestPath)) {
+    $manifest = json_decode(file_get_contents($manifestPath), true);
+    if (isset($manifest['wp-content/themes/dw/ressources/css/styles.css'])) {
+        wp_enqueue_style('dw', get_theme_file_uri('public/' . $manifest['wp-content/themes/dw/ressources/css/styles.scss']['file']));
+    }
+
+    if (isset($manifest['wp-content/themes/dw/ressources/js/scripts.js'])) {
+        wp_enqueue_script('dw', get_theme_file_uri('public/' . $manifest['wp-content/themes/dw/ressources/js/scripts.js']['file'],[], true));
+    }
+}
+
+remove_action('wp_head', 'print_emoji_detection_script', 7);
+remove_action('wp_print_styles', 'print_emoji_styles');
+remove_action('wp_head', 'wp_print_comments');
+remove_action('wp_head', 'wp_oembed_add_discovery_links');
+remove_action('wp_head', 'wp_oembed_add_host_js');
+remove_action('wp_head', 'rest_output_link_wp_head');
+remove_action('wp_head', 'wp_generator');
+remove_action('wp_head', 'classic-theme-styles-inline-css');
+
 // Gutenberg est le nouvelle éditeur de contenu propre à wordPress
 // il ne nous intérresse pas pour l'utilisation du thème que
 // nous allons créer. On va le désactiver :
