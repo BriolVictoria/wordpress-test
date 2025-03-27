@@ -208,6 +208,17 @@ register_post_type('contact_message', [
     'supports' => ['title','editor'],
 ]);
 
+register_post_type('recipe_message', [
+    'label' => 'Messages de recipe',
+    'description' => 'Les envois de formulaire via la page de recipe',
+    'menu_position' => 10,
+    'menu_icon' => 'dashicons-email',
+    'public' => false,
+    'show_ui' => true,
+    'has_archive' => false,
+    'supports' => ['title','editor'],
+]);
+
 // Créer une fonction qui permet de créer des pages d'options ACF pour le thème :
 function create_site_options_page():void
 
@@ -271,6 +282,25 @@ require_once(__DIR__ . '/forms/ContactForm.php');
 function dw_handle_contact_form()
 {
     $form = (new \DW_Theme\Forms\ContactForm())
+        ->rule('firstname', 'required')
+        ->rule('lastname', 'required')
+        ->rule('email', 'required')
+        ->rule('email', 'email')
+        ->rule('message', 'required')
+        ->rule('message', 'no_test')
+        ->sanitize('firstname', 'sanitize_text_field')
+        ->sanitize('lastname', 'sanitize_text_field')
+        ->sanitize('email', 'sanitize_text_field')
+        ->sanitize('message', 'sanitize_textarea_field');
+
+    return $form->handle($_POST);
+}
+
+
+require_once(__DIR__ . '/forms/RecipeForm.php');
+function dw_handle_recipe_form()
+{
+    $form = (new \DW_Theme\Forms\RecipeForm())
         ->rule('firstname', 'required')
         ->rule('lastname', 'required')
         ->rule('email', 'required')
