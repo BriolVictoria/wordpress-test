@@ -125,6 +125,22 @@ register_post_type('travel', [
 
 // Ajouter des "catégories" (taxonomies) sur ces post_types:
 
+
+register_taxonomy('travel_type', ['travel'], [
+    'labels' => [
+        'name' => __hepl('Les types de voyages'),
+        'singular' => __hepl('Type de voyage')
+    ],
+    'description' => 'Types de voyages',
+    'public' => true,
+    'hierarchical' => true,
+    'show_ui' => true,
+    'show_admin_column' => true,
+    'show_tagcloud' => false,
+    'rewrite' => ['slug' => __hepl('type-de-voyage')],
+],
+);
+
 register_taxonomy('course', ['recipe'], [
     'labels' => [
         'name' => 'Services',
